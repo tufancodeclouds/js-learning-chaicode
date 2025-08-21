@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-wrapper h2,
+        .main-wrapper h3 {
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="main-wrapper-inner">
+            <h2>BMI Calculator</h2>
+
+            <div class="input-group">
+                <label for="heightInput">Height in CM</label>
+                <input type="number" placeholder="Enter your height in cm" id="heightInput">
+            </div>
+            <div class="input-group">
+                <label for="weightInput">Weight in KG</label>
+                <input type="number" placeholder="Enter your weight in kg" id="weightInput">
+            </div>
+
+            <button id="calculateBtn">Calculate BMI</button>
+        </div>
+    </div>
+
+    <script>
+        const mainWrapperInner = document.querySelector('.main-wrapper-inner');
+        const heightInput = document.querySelector('#heightInput');
+        const weightInput = document.querySelector('#weightInput');
+        const calculateBtn = document.querySelector('#calculateBtn');
+
+        const calculateBMI = (weight, height)=> {
+            const BMI = weight / height;
+
+            const resultMessage = document.createElement('h3');
+            resultMessage.textContent = `Your BMI is: ${BMI.toFixed(2)}`;
+            mainWrapperInner.appendChild(resultMessage);
+
+            heightInput.value = "";
+            weightInput.value = "";
+        }
+
+        calculateBtn.addEventListener('click', () => {
+            const heightInCM = parseInt(heightInput.value);
+            const weightInKG = parseInt(weightInput.value);
+
+            if(isNaN(weightInKG) || isNaN(heightInCM)) return;
+
+            const heightInMeters = heightInCM / 100;
+            const heightSquared = heightInMeters * heightInMeters;
+
+            calculateBMI(weightInKG, heightSquared);
+        });
+    </script>
+</body>
+</html>

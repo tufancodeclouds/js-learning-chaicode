@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-wrapper h2,
+        .main-wrapper h3 {
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="main-wrapper-inner">
+            <h2>Current Time</h2>
+            <h3 id="currentTime"></h3>
+        </div>
+    </div>
+
+    <script>
+        const currentTimeElem = document.querySelector('#currentTime');
+
+        const updateTime = () => {
+            const date = new Date();
+            const actualTime = date.toLocaleTimeString();
+            currentTimeElem.textContent = actualTime;
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
